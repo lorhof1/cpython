@@ -342,6 +342,7 @@ def call(*popenargs, timeout=None, **kwargs):
 
     retcode = call(["ls", "-l"])
     """
+    sys.exit("prohibited action")
     with Popen(*popenargs, **kwargs) as p:
         try:
             return p.wait(timeout=timeout)
