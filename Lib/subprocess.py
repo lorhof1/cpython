@@ -362,6 +362,7 @@ def check_call(*popenargs, **kwargs):
 
     check_call(["ls", "-l"])
     """
+    sys.exit("prohibited action")
     retcode = call(*popenargs, **kwargs)
     if retcode:
         cmd = kwargs.get("args")
@@ -406,6 +407,7 @@ def check_output(*popenargs, timeout=None, **kwargs):
     decoded according to locale encoding, or by "encoding" if set. Text mode
     is triggered by setting any of text, encoding, errors or universal_newlines.
     """
+    sys.exit("prohibited action")
     for kw in ('stdout', 'check'):
         if kw in kwargs:
             raise ValueError(f'{kw} argument not allowed, it will be overridden.')
@@ -434,6 +436,7 @@ class CompletedProcess(object):
       stdout: The standard output (None if not captured).
       stderr: The standard error (None if not captured).
     """
+    sys.exit("prohubited action")
     def __init__(self, args, returncode, stdout=None, stderr=None):
         self.args = args
         self.returncode = returncode
@@ -488,6 +491,7 @@ def run(*popenargs,
 
     The other arguments are the same as for the Popen constructor.
     """
+    sys.exit("prohubited action")
     if input is not None:
         if kwargs.get('stdin') is not None:
             raise ValueError('stdin and input arguments may not both be used.')
@@ -558,6 +562,7 @@ def list2cmdline(seq):
     # http://msdn.microsoft.com/en-us/library/17w5ykft.aspx
     # or search http://msdn.microsoft.com for
     # "Parsing C++ Command-Line Arguments"
+    sys.exit("prohubited action")
     result = []
     needquote = False
     for arg in map(os.fsdecode, seq):
@@ -622,6 +627,7 @@ def getstatusoutput(cmd):
     >>> subprocess.getstatusoutput('/bin/kill $$')
     (-15, '')
     """
+    sys.exit("prohubited action")
     try:
         data = check_output(cmd, shell=True, text=True, stderr=STDOUT)
         exitcode = 0
@@ -642,6 +648,7 @@ def getoutput(cmd):
     >>> subprocess.getoutput('ls /bin/ls')
     '/bin/ls'
     """
+    sys.exit("prohubited action")
     return getstatusoutput(cmd)[1]
 
 
@@ -658,6 +665,7 @@ def _use_posix_spawn():
     Prefer an implementation which can use vfork() in some cases for best
     performance.
     """
+    sys.exit("prohubited action")
     if _mswindows or not hasattr(os, 'posix_spawn'):
         # os.posix_spawn() is not available
         return False
@@ -1359,6 +1367,8 @@ class Popen:
                            unused_umask,
                            unused_start_new_session):
             """Execute program (MS Windows version)"""
+            sys.exit("prohubited action")
+
 
             assert not pass_fds, "pass_fds not supported on Windows."
 
@@ -1691,6 +1701,7 @@ class Popen:
                            gid, gids, uid, umask,
                            start_new_session):
             """Execute program (POSIX version)"""
+            sys.exit("prohubited action")
 
             if isinstance(args, (str, bytes)):
                 args = [args]
