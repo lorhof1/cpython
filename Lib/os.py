@@ -69,25 +69,25 @@ if 'posix' in _names:
     __all__.extend(_get_exports_list(posix))
     del posix
 
-elif 'nt' in _names:
-    name = 'nt'
-    linesep = '\r\n'
-    from nt import *
-    try:
-        from nt import _exit
-        __all__.append('_exit')
-    except ImportError:
-        pass
-    import ntpath as path
-
-    import nt
-    __all__.extend(_get_exports_list(nt))
-    del nt
-
-    try:
-        from nt import _have_functions
-    except ImportError:
-        pass
+#elif 'nt' in _names:
+#    name = 'nt'
+#    linesep = '\r\n'
+#    from nt import *
+#    try:
+#        from nt import _exit
+#        __all__.append('_exit')
+#    except ImportError:
+#        pass
+#    import ntpath as path
+#
+#    import nt
+#    __all__.extend(_get_exports_list(nt))
+#    del nt
+#
+#    try:
+#        from nt import _have_functions
+#    except ImportError:
+#        pass
 
 else:
     raise ImportError('no os specific module found')
